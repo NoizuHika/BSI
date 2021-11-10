@@ -1,9 +1,11 @@
+//Yevhen Kozyriev and Grzegorz Cytawa
+
 import java.util.Scanner;
 
 import static java.lang.System.exit;
 
 public class bsi {
-
+    
     public static void printMenu(String[] options) {
         for (String option : options) {
             System.out.println(option);
@@ -125,16 +127,25 @@ public class bsi {
                 Scanner Husselect = new Scanner(System.in);
                 double Husbandselection = Husselect.nextInt();
                 double Husproc = Husbandselection / 100;
-                System.out.println("Probability of husband's selection (percent): ");
-                Scanner Wifeselect = new Scanner(System.in);
-                double Wifeselection = Wifeselect.nextInt();
-                double Wifeproc = Wifeselection / 100;
-
-                double ppierwsze = 1 - Husproc;
-                double pdrugie = 1 - Wifeproc;
-                double prawresult = Husproc * pdrugie + Wifeproc * ppierwsze;
-                System.out.println("P(A)=" + Husproc + ", P(B)=" + Wifeproc + ", P(A')=" + ppierwsze + ", P(B')=" + pdrugie);
-                System.out.println("PROBABILITY= P(A)*P(B')+P(B)*P(A')=" + prawresult);
+                if(Husbandselection > 0 && Husbandselection < 100){
+                    System.out.println("Probability of wife's selection (percent): ");
+                    Scanner Wifeselect = new Scanner(System.in);
+                    double Wifeselection = Wifeselect.nextInt();
+                    if (Wifeselection > 0 && Wifeselection < 100) {
+                        double Wifeproc = Wifeselection / 100;
+                        double ppierwsze = 1 - Husproc;
+                        double pdrugie = 1 - Wifeproc;
+                        double prawresult = Husproc * pdrugie + Wifeproc * ppierwsze;
+                        System.out.println("P(A)=" + Husproc + ", P(B)=" + Wifeproc + ", P(A')=" + ppierwsze + ", P(B')=" + pdrugie);
+                        System.out.println("PROBABILITY= P(A)*P(B')+P(B)*P(A')=" + prawresult);
+                    }else{
+                        System.out.println("Write correct percents");
+                        break;
+                    }
+                }else {
+                    System.out.println("Write correct percents");
+                    break;
+                }
             }
             case 2: {
                 break;
@@ -167,27 +178,56 @@ public class bsi {
                 System.out.println("How much share A have: ");
                 Scanner IAshare = new Scanner(System.in);
                 int Ashare = IAshare.nextInt();
-                System.out.println("How much prizes in A lottery: ");
-                Scanner IAprize = new Scanner(System.in);
-                int Aprize = IAprize.nextInt();
-                System.out.println("How much blanks in A lottery: ");
-                Scanner IAblanks = new Scanner(System.in);
-                int Ablanks = IAblanks.nextInt();
-                System.out.println("How much share B have: ");
-                Scanner IBshare = new Scanner(System.in);
-                int Bshare = IBshare.nextInt();
-                System.out.println("How much prizes in B lottery: ");
-                Scanner IBprize = new Scanner(System.in);
-                int Bprize = IBprize.nextInt();
-                System.out.println("How much blanks in B lottery: ");
-                Scanner IBblanks = new Scanner(System.in);
-                int Bblanks = IBblanks.nextInt();
+                if (Ashare > 0) {
+                    System.out.println("How much prizes in A lottery: ");
+                    Scanner IAprize = new Scanner(System.in);
+                    int Aprize = IAprize.nextInt();
+                    if(Aprize > 0){
+                        System.out.println("How much blanks in A lottery: ");
+                        Scanner IAblanks = new Scanner(System.in);
+                        int Ablanks = IAblanks.nextInt();
+                        if(Ablanks > 0){
+                            System.out.println("How much share B have: ");
+                            Scanner IBshare = new Scanner(System.in);
+                            int Bshare = IBshare.nextInt();
+                            if(Bshare > 0){
+                                System.out.println("How much prizes in B lottery: ");
+                                Scanner IBprize = new Scanner(System.in);
+                                int Bprize = IBprize.nextInt();
+                                if(Bprize > 0) {
+                                    System.out.println("How much blanks in B lottery: ");
+                                    Scanner IBblanks = new Scanner(System.in);
+                                    int Bblanks = IBblanks.nextInt();
+                                    if (Bblanks > 0) {
+                                        double spA = factorial(Ablanks)/(factorial(Aprize+Ablanks)/factorial((Ablanks+Aprize)-Ashare));
+                                        double spB = (factorial(Bblanks)/(factorial(Bshare)*factorial((Bblanks-Bshare))))/(factorial(Bblanks+Bprize)/(factorial(Bshare)*factorial((Bblanks+Bprize)-Bshare)));
 
-                double spA = factorial(Ablanks)/(factorial(Aprize+Ablanks)/factorial((Ablanks+Aprize)-Ashare));
-                double spB = (factorial(Bblanks)/(factorial(Bshare)*factorial((Bblanks-Bshare))))/(factorial(Bblanks+Bprize)/(factorial(Bshare)*factorial((Bblanks+Bprize)-Bshare)));
-
-                double sresult = (1-spA)/(1-spB);
-                System.out.println("PROBABILITY="+sresult);
+                                        double sresult = (1-spA)/(1-spB);
+                                        System.out.println("PROBABILITY="+sresult);
+                                    }else{
+                                        System.out.println("Number must be more than 0");
+                                        break;
+                                    }
+                                }else{
+                                    System.out.println("Number must be more than 0");
+                                    break;
+                                }
+                            }else{
+                                System.out.println("Number must be more than 0");
+                                break;
+                            }
+                        }else{
+                            System.out.println("Number must be more than 0");
+                            break;
+                        }
+                    }else{
+                        System.out.println("Number must be more than 0");
+                        break;
+                    }
+                }else{
+                    System.out.println("Number must be more than 0");
+                    break;
+                }
             }
             case 2: {
                 break;
@@ -216,19 +256,36 @@ public class bsi {
                 System.out.println("How much men in group: ");
                 Scanner men = new Scanner(System.in);
                 int mens = men.nextInt();
-                System.out.println("How much women in group: ");
-                Scanner women = new Scanner(System.in);
-                int women1 = women.nextInt();
-                System.out.println("How much childrens in group: ");
-                Scanner chil = new Scanner(System.in);
-                int chil1 = chil.nextInt();
-                int all = mens+women1+chil1;
-                int old = mens+women1;
+                if(mens > 0){
+                    System.out.println("How much women in group: ");
+                    Scanner women = new Scanner(System.in);
+                    int women1 = women.nextInt();
+                    if(women1 > 0){
+                        System.out.println("How much childrens in group: ");
+                        Scanner chil = new Scanner(System.in);
+                        int chil1 = chil.nextInt();
+                        if(chil1 > 0){
+                            int all = mens+women1+chil1;
+                            int old = mens+women1;
 
-                double y = factorial(all)/(factorial(chil1)*factorial(old));
-                double c = factorial(chil1)/(factorial(2)*factorial((chil1)-2))*factorial(old)/(factorial(2)*factorial((women1+mens)-2));
-                double result1 = c/y;
-                System.out.println("Probability that exactly 2 childrens will choosen = "+result1);
+                            double y = factorial(all)/(factorial(chil1)*factorial(old));
+                            double c = factorial(chil1)/(factorial(2)*factorial((chil1)-2))*factorial(old)/(factorial(2)*factorial((women1+mens)-2));
+                            double result1 = c/y;
+                            System.out.println("Probability that exactly 2 childrens will choosen = "+result1);
+                        }else{
+                            System.out.println("Number must be more than 0");
+                            break;
+                        }
+
+                    }else{
+                        System.out.println("Number must be more than 0");
+                        break;
+                    }
+
+                }else{
+                    System.out.println("Number must be more than 0");
+                    break;
+                }
             }
             case 2: {
                 break;
@@ -268,30 +325,52 @@ public class bsi {
                 Scanner ps = new Scanner(System.in);
                 double pierwszy = ps.nextInt();
                 double pierwszyproc = pierwszy/100;
+                if(pierwszyproc > 0 && pierwszyproc < 100){
+                    System.out.println("Write probability of second shot in percent: ");
+                    Scanner ds = new Scanner(System.in);
+                    double drugi = ds.nextInt();
+                    double drugiproc = drugi/100;
 
-                System.out.println("Write probability of second shot in percent: ");
-                Scanner ds = new Scanner(System.in);
-                double drugi = ds.nextInt();
-                double drugiproc = drugi/100;
 
-                System.out.println("Write probability of third shot in percent: ");
-                Scanner ts = new Scanner(System.in);
-                double trzeci = ts.nextInt();
-                double trzeciproc = trzeci/100;
+                    if(drugiproc > 0 && drugiproc < 100){
+                        System.out.println("Write probability of third shot in percent: ");
+                        Scanner ts = new Scanner(System.in);
+                        double trzeci = ts.nextInt();
+                        double trzeciproc = trzeci/100;
 
-                System.out.println("Write probability of fourth shot in percent: ");
-                Scanner cs = new Scanner(System.in);
-                double czwarty = cs.nextInt();
-                double czwartyproc = czwarty/100;
 
-                double pps = 1 - pierwszyproc;
-                double pds = 1 - drugiproc;
-                double pts = 1 - trzeciproc;
-                double pcs = 1 - czwartyproc;
-                double prawdoresult = 1 - (pps * pds * pts * pcs);
-                System.out.println("P(A1)=" + pierwszyproc + " P(A2)=" + drugiproc + " P(A3)=" + trzeciproc + " P(A4)=" + czwartyproc);
-                System.out.println("P(A1')=" + pps + " P(A2')=" + pds + " P(A3')=" + pts + " P(A4')=" + pcs);
-                System.out.println("PROBABILITY= 1-P(A1')P(A2')P(A3')P(A4'=)" + prawdoresult);
+                        if(trzeciproc > 0 && trzeciproc < 100){
+                            System.out.println("Write probability of fourth shot in percent: ");
+                            Scanner cs = new Scanner(System.in);
+                            double czwarty = cs.nextInt();
+                            double czwartyproc = czwarty/100;
+
+
+                            if(czwartyproc > 0 && czwartyproc < 100){
+                                double pps = 1 - pierwszyproc;
+                                double pds = 1 - drugiproc;
+                                double pts = 1 - trzeciproc;
+                                double pcs = 1 - czwartyproc;
+                                double prawdoresult = 1 - (pps * pds * pts * pcs);
+                                System.out.println("P(A1)=" + pierwszyproc + " P(A2)=" + drugiproc + " P(A3)=" + trzeciproc + " P(A4)=" + czwartyproc);
+                                System.out.println("P(A1')=" + pps + " P(A2')=" + pds + " P(A3')=" + pts + " P(A4')=" + pcs);
+                                System.out.println("PROBABILITY= 1-P(A1')P(A2')P(A3')P(A4'=)" + prawdoresult);
+                            }else{
+                                System.out.println("Number must be more than 0 and less than 100");
+                                break;
+                            }
+                        }else{
+                            System.out.println("Number must be more than 0 and less than 100");
+                            break;
+                        }
+                    }else{
+                        System.out.println("Number must be more than 0 and less than 100");
+                        break;
+                    }
+                }else{
+                    System.out.println("Number must be more than 0 and less than 100");
+                    break;
+                }
 
             }
             case 2: {
