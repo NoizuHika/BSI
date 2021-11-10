@@ -1,4 +1,3 @@
-import java.beans.BeanProperty;
 import java.util.Scanner;
 
 import static java.lang.System.exit;
@@ -85,18 +84,23 @@ public class bsi {
                 System.out.println("Please enter an integer value between 1 and 3 ");
         }
 
-        System.out.println("Jezeli chcesz wpisac swoje liczby to wpisz 1, jak chcesz przerwac program - 2");
+        System.out.println("If you want to write your own numbers so choose 1, if you want to break this exercise - 2");
         Scanner in = new Scanner(System.in);
         int wybor1 = in.nextInt();
         switch(wybor1){
             case 1: {
-                
+
             }
             case 2: {
                 break;
             }
         }
     }
+
+    /*
+    Ten kod oblicza prawdopodobienstwo z jakim zostanie wybrana dokladnie jedna osoba
+    Wpisujemy 2 liczby. 1 liczba prawdopodobienstwo wylosowania meza w procentach, oraz 2 liczba prawdopodobienstwo wylosowania żony w procentach
+     */
 
     private static void option2() {
         System.out.println("Exercise 23: A man and his wife appear for an interview for two posts. The \n" +
@@ -112,16 +116,16 @@ public class bsi {
         System.out.println("P(A)=" + pa + ", P(B)=" + pb + ", P(A')=" + pc + ", P(B')=" + pd);
         System.out.println("PROBABILITY= P(A)*P(B')+P(B)*P(A')=" + result + "=2/7");
 
-        System.out.println("Jezeli chcesz wpisac swoje liczby to wpisz 1, jak chcesz przerwac program - 2");
+        System.out.println("If you want to write your own numbers so choose 1, if you want to break this exercise - 2");
         Scanner in = new Scanner(System.in);
         int wybor2 = in.nextInt();
         switch(wybor2){
             case 1: {
-                System.out.println("Probability of husband's selection w procentach: ");
+                System.out.println("Probability of husband's selection (percent): ");
                 Scanner Husselect = new Scanner(System.in);
                 double Husbandselection = Husselect.nextInt();
                 double Husproc = Husbandselection / 100;
-                System.out.println("Probability of husband's selection w procentach: ");
+                System.out.println("Probability of husband's selection (percent): ");
                 Scanner Wifeselect = new Scanner(System.in);
                 double Wifeselection = Wifeselect.nextInt();
                 double Wifeproc = Wifeselection / 100;
@@ -138,6 +142,12 @@ public class bsi {
         }
     }
 
+    /*
+    Ten kod oblicza stosunek wygrania A do wygrania B
+    Wpisujemy 6 liczb. 3 stosuja sie do A, a 3 do B
+    Pierwsza liczba to ilosc losow uczestnika A, 2 liczba ile jest nagrod dla uczestnika A, 3 liczba ile jest przeegranych losow dla uczestnika A
+    Rowniez dla uczestnika B to samo: 4 liczba to ilosc losow uczestnika B, 5 liczba ile jest nagrod dla uczestnika B, 6 liczba ile jest przeegranych losow dla uczesnika B
+     */
     private static void option3() {
         System.out.println("Exercise 29: A has one share in a lottery in which there is one prize and two \n" +
                 "blanks ; B has three shares in a lottery in which there are three \n" +
@@ -149,7 +159,7 @@ public class bsi {
         double result= (1-pA)/(1-pB);
         System.out.println("PROBABILITY="+result+"7:16");
 
-        System.out.println("Jezeli chcesz wpisac swoje liczby to wpisz 1, jak chcesz przerwac program - 2");
+        System.out.println("If you want to write your own numbers so choose 1, if you want to break this exercise - 2");
         Scanner in = new Scanner(System.in);
         int wybor3 = in.nextInt();
         switch(wybor3){
@@ -186,6 +196,10 @@ public class bsi {
 
     }
 
+    /*
+    ten kod oblicza prawdopodobienstwo wybrania dokladnie 2 dzieci z posrod uczestnikow
+    Pierwsza liczba ilosc mezczyzn w grupie, 2 liczba ilosc kobiet oraz 3 liczba ilosc dzieci w grupie
+     */
     private static void option4() {
         System.out.println("Exercise 30: Four persons are chosen at random from a group containing 3 men, \n" +
                 "2 women and 4 children. Calculate the chances that exactly two of \n" +
@@ -194,18 +208,18 @@ public class bsi {
         double z = factorial(4)/(factorial(2)*factorial(2))*factorial(5)/(factorial(2)*factorial(3));// number of ways of choosing 2 children out of 4 and 2 persons out of (3 + 2) personal
         double result = z / x;
         System.out.println("PROBABILITY=" + result+ "=10/21");
-        System.out.println("Jezeli chcesz wpisac swoje liczby to wpisz 1, jak chcesz przerwac program - 2");
+        System.out.println("If you want to write your own numbers so choose 1, if you want to break this exercise - 2");
         Scanner in = new Scanner(System.in);
         int wybor4 = in.nextInt();
         switch(wybor4){
             case 1: {
-                System.out.println("Ile jest mezczyzn: ");
+                System.out.println("How much men in group: ");
                 Scanner men = new Scanner(System.in);
                 int mens = men.nextInt();
-                System.out.println("Ile jest kobiet: ");
+                System.out.println("How much women in group: ");
                 Scanner women = new Scanner(System.in);
                 int women1 = women.nextInt();
-                System.out.println("Ile jest dzieci: ");
+                System.out.println("How much childrens in group: ");
                 Scanner chil = new Scanner(System.in);
                 int chil1 = chil.nextInt();
                 int all = mens+women1+chil1;
@@ -214,7 +228,7 @@ public class bsi {
                 double y = factorial(all)/(factorial(chil1)*factorial(old));
                 double c = factorial(chil1)/(factorial(2)*factorial((chil1)-2))*factorial(old)/(factorial(2)*factorial((women1+mens)-2));
                 double result1 = c/y;
-                System.out.println("Szansa ze napewno bedzie wylacznie dwojka dzieci = "+result1);
+                System.out.println("Probability that exactly 2 childrens will choosen = "+result1);
             }
             case 2: {
                 break;
@@ -222,6 +236,12 @@ public class bsi {
         }
 
     }
+
+    /*
+    ten kod oblicza prawdopodobienstwo trafiania w samolot
+    Pierwsza liczba to jest prawdopodobienstwo 1 strzalu w procentach, 2 liczba to jest prawdopodobienstwo 2 strzalu w procentach,
+    3 liczba to jest prawdopodobienstwo 3 strzalu w procentach, 4 liczba to jest prawdopodobienstwo 4 strzalu w procentach
+     */
     private static void option5() {
         System.out.println("Exercise 35: An anti-aircraft gun can take a minimum of four shots at an enemy \n" +
                 "plane moving away from it. The probability of hitting the plane at \n" +
@@ -239,27 +259,27 @@ public class bsi {
         System.out.println("P(A1)=" + a1 + " P(A2)=" + a2 + " P(A3)=" + a3 + " P(A4)=" + a4);
         System.out.println("P(A1')=" + b1 + " P(A2')=" + b2 + " P(A3')=" + b3 + " P(A4')=" + b4);
         System.out.println("PROBABILITY= 1-P(A1')P(A2')P(A3')P(A4'=)" + result);
-        System.out.println("Jezeli chcesz wpisac swoje liczby to wpisz 1, jak chcesz przerwac program - 2");
+        System.out.println("If you want to write your own numbers so choose 1, if you want to break this exercise - 2");
         Scanner in = new Scanner(System.in);
         int wybor5 = in.nextInt();
         switch(wybor5){
             case 1: {
-                System.out.println("Wpisz prawdopodobienstwo pierwszego strzalu w procentach: ");
+                System.out.println("Write probability of first shot in percent: ");
                 Scanner ps = new Scanner(System.in);
                 double pierwszy = ps.nextInt();
                 double pierwszyproc = pierwszy/100;
 
-                System.out.println("Wpisz prawdopodobienstwo drugiego strzalu w procentach: ");
+                System.out.println("Write probability of second shot in percent: ");
                 Scanner ds = new Scanner(System.in);
                 double drugi = ds.nextInt();
                 double drugiproc = drugi/100;
 
-                System.out.println("Wpisz prawdopodobienstwo trzeciego strzalu w procentach: ");
+                System.out.println("Write probability of third shot in percent: ");
                 Scanner ts = new Scanner(System.in);
                 double trzeci = ts.nextInt();
                 double trzeciproc = trzeci/100;
 
-                System.out.println("Wpisz prawdopodobienstwo czwartego strzalu w procentach: ");
+                System.out.println("Write probability of fourth shot in percent: ");
                 Scanner cs = new Scanner(System.in);
                 double czwarty = cs.nextInt();
                 double czwartyproc = czwarty/100;
